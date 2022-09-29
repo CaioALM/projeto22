@@ -22,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/CaioALM/projeto22/issues"
   },
-  "homepage": "https://github.com/CaioALM/projeto22#readme"
+  "homepage": "https://github.com/CaioALM/projeto22#readme",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1"
+  }
 }
