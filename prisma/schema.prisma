@@ -10,10 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
 
   @@map("users")
+}
+
+model Teams {
+  id    Int     @id @default(autoincrement())
+  team String  @unique
+
+  @@map("teams")
+}
+
+model Belts {
+  id    Int     @id @default(autoincrement())
+  belt String  @unique
+
+  @@map("belts")
 }
