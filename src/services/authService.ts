@@ -13,7 +13,7 @@ async function createUser(name: string,email: string, password: string ) {
     await authRepository.createUser(name, email, passwordHash)
 }
 
-async function login (email: string, password: string) {
+async function login(email: string, password: string) {
     const user = await authRepository.getUserByEmail(email);
     if (!user) throw { type: "Unauthorized", message: "Incorrect email or password"}
 
@@ -22,8 +22,11 @@ async function login (email: string, password: string) {
 
     const { id } = user;
     const token = jwt.sign(String(id), process.env.JWT_TOKEN)
+
+    return token;
 }
 
 export default {
     createUser,
+    login
 }

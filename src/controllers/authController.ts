@@ -8,11 +8,13 @@ async function createUser(req: Request, res: Response) {
     res.sendStatus(201)
 }
 
-function login(req: Request, res: Response) {
-
+async function login(req: Request, res: Response) {
+    const {email, password} = req.body
+    const token = await authService.login(email, password)
+    res.status(200).send({token})
 }
 
 export default {
-    createUser,
+    createUser, 
     login
 };
