@@ -12,15 +12,16 @@ datasource db {
 
 model Users {
   id    Int     @id @default(autoincrement())
+  name  String
   email String  @unique
-  name  String?
+  password String
 
   @@map("users")
 }
 
 model Teams {
   id    Int     @id @default(autoincrement())
-  team String  @unique
+  team String  @unique 
 
   @@map("teams")
 }
