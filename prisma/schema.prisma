@@ -17,15 +17,20 @@ model Users {
   belt  Belt @default(branca)
   email String  @unique
   password String
+  payments Payments[]
 
   @@map("users")
 }
 
-model Teams {
-  id    Int     @id @default(autoincrement())
-  team String  @unique 
+model Payments {
+  id     Int     @id @default(autoincrement())
+  userId Int   
+  payd   Boolean @default(false)
+  monthYear DateTime 
+  payedAt DateTime
+  users Users @relation(fields: [userId], references: [id])
 
-  @@map("teams")
+  @@map("payments")
 }
 
 enum Belt {
