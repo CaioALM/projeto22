@@ -2,15 +2,14 @@ import bcrypt from 'bcrypt';
 import authRepository from '../repositories/authRepository.js'
 import jwt from 'jsonwebtoken'
 
-async function createUser(name: string,email: string, password: string ) {
+async function createUser(name: string, age: number, belt: string, email: string, password: string ) {
     const passwordHash = bcrypt.hashSync(password, 10)
     const user = await authRepository.getUserByEmail(email);
 
     if (user) {
         throw { type: "conflict", message: "Email already registered"}
     }
-
-    await authRepository.createUser(name, email, passwordHash)
+    await authRepository.createUser(name, age, belt, email, passwordHash )
 }
 
 async function login(email: string, password: string) {

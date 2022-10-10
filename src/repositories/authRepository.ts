@@ -1,6 +1,7 @@
 import { prisma } from "../database.js"
 
 
+
 async function getUserByEmail(email: string){
     return prisma.users.findFirst({
         where: {
@@ -9,14 +10,15 @@ async function getUserByEmail(email: string){
     });
 }
 
-async function createUser(name: string, email: string, password: string){
+async function createUser(name: string, age: number, belt: string, email: string, password: string){
     await prisma.users.create({
         data: {
-            name,
+            name, 
+            age,
+            belt,
             email,
             password
-        
-        }
+        },
     })
 }
 

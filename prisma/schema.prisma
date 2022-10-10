@@ -13,6 +13,8 @@ datasource db {
 model Users {
   id    Int     @id @default(autoincrement())
   name  String
+  age   Int
+  belt  Belt @default(branca)
   email String  @unique
   password String
 
@@ -26,9 +28,15 @@ model Teams {
   @@map("teams")
 }
 
-model Belts {
-  id    Int     @id @default(autoincrement())
-  belt String  @unique
-
-  @@map("belts")
+enum Belt {
+  branca
+  cinza
+  amarela
+  laranja
+  verde
+  azul
+  roxa
+  marrom
+  preta
 }
+
