@@ -6,14 +6,15 @@ async function getPayments(req: Request, res: Response) {
     const payments = await fighterService.getPayments(userId)
     res.status(200).send(payments);
 }
-
-async function login(req: Request, res: Response) {
-    const {email, password} = req.body
-    const token = await fighterService.login(email, password)
-    res.status(200).send({token})
+async function updatePayments(req: Request, res: Response) {
+    const userId = res.locals.userId;
+    const paymentId = Number(req.params.paymentId)
+    await fighterService.updatePayments(userId, paymentId)
+    res.sendStatus(201)
 }
 
+
 export default {
-    getPayments, 
-    login
+    getPayments,
+    updatePayments,
 };

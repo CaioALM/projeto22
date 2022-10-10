@@ -13,18 +13,23 @@ async function getPayments(userId: number) {
     return payments 
 }
 
-// async function login(email: string, password: string) {
-//     const user = await authRepository.getUserByEmail(email);
-//     if (!user) throw { type: "Unauthorized", message: "Incorrect email or password"}
+async function updatePayments(userId: number, paymentId: number) {
+    
+    const payment = await fighterRepository.getPaymentsById(paymentId);
 
-//     const isValid = bcrypt.compareSync(password, user.password);
-//     if (!isValid) throw { type: "Unauthorized", message: "Incorrect email or password" };
+    if (!payment) {
+        throw { code: "not_found", message: "There is no payment with this id" };
+    }
+    if (payment.userId !== userId) {
+        throw { code: "Unauthorized", message: "You have no permission to that" };
+    }
+    const payedAt = dayjs().format('MM/YYYY')
+    const payd = true
 
-//     const { id } = user;
-//     const token = jwt.sign(String(id), process.env.JWT_TOKEN)
+    await fighterRepository.updatePaymentById(paymentId, payd, payedAt)
+   
+}
 
-//     return token;
-// }
 async function populatePayments(userId: number) {
     const month = dayjs().month()
     const year = dayjs().year()
@@ -45,5 +50,6 @@ async function populatePayments(userId: number) {
         
 export default {
     getPayments,
+    updatePayments
     
 }

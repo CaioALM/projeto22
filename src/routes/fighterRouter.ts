@@ -5,6 +5,6 @@ import { validateToken } from '../middlewares/validateToken.js';
 const fighterRouter = Router();
 
 fighterRouter.get("/payments",  validateToken, fighterController.getPayments)
-// fighterRouter.post("/login", authController.login)
+fighterRouter.put("/payments/:paymentId", validateToken, fighterController.updatePayments)
 
 export default fighterRouter;
