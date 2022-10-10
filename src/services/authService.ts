@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
 import authRepository from '../repositories/authRepository.js'
 import jwt from 'jsonwebtoken'
+import { Belt } from '@prisma/client'
 
-async function createUser(name: string, age: number, belt: string, email: string, password: string ) {
+async function createUser(name: string, age: number, belt: Belt, email: string, password: string ) {
     const passwordHash = bcrypt.hashSync(password, 10)
     const user = await authRepository.getUserByEmail(email);
 
